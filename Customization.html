@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HydraTech - Customize</title>
+    <style>
+        body { font-family: Arial; background: #eef1ff; text-align: center; padding: 20px; }
+        img { width: 200px; height: 200px; margin: 20px; }
+        select, input, button { padding: 10px; margin: 10px; font-size: 16px; }
+        button { background: #2A4DFF; color: white; border: none; cursor: pointer; }
+        button:hover { background: #1a38c7; }
+        .charges { font-weight: bold; color: green; margin: 20px; }
+    </style>
+</head>
+<body>
+
+<h2>Customize Your HydraTech Bottle</h2>
+
+<img id="productImg" src="Image 2 for Home.png" alt="Bottle Image">
+
+<div>
+    <label>Choose Product:</label>
+    <select id="productSelect" onchange="updatePreview()">
+        <option value="Image 2 for Home.png" data-price="5999">Pro - Rs 5999</option>
+        <option value="Mini Bottle.png" data-price="4499">Mini - Rs 4499</option>
+        <option value="Image 3 for home.png" data-price="7199">Aqua - Rs 7199</option>
+        <option value="Back.png" data-price="6499">Frost - Rs 6499</option>
+    </select>
+</div>
+
+<div>
+    <label>LED Color:</label>
+    <select id="ledSelect" onchange="updateCharges()">
+        <option value="None" data-extra="0">None</option>
+        <option value="Red" data-extra="300">Red (+Rs 300)</option>
+        <option value="Blue" data-extra="300">Blue (+Rs 300)</option>
+        <option value="Green" data-extra="300">Green (+Rs 300)</option>
+    </select>
+</div>
+
+<div>
+    <label>Name Carving:</label>
+    <input type="text" id="nameCarving" placeholder="Enter Name" oninput="updateCharges()">
+</div>
+
+<div class="charges" id="chargesDisplay">Total: Rs 0</div>
+
+<button onclick="addToCart()">Add to Cart</button>
+
+<script>
+function updatePreview() {
+    let product = document.getElementById('productSelect').value;
+    document.getElementById('productImg').src = product;
+    updateCharges();
+}
+
+function updateCharges() {
+    let base = parseInt(document.getElementById('productSelect').selectedOptions[0].dataset.price);
+    let led = parseInt(document.getElementById('ledSelect').selectedOptions[0].dataset.extra);
+    let carving = document.getElementById('nameCarving').value.trim() ? 500 : 0;
+    let total = base + led + carving;
+    document.getElementById('chargesDisplay').innerText = "Total: Rs " + total;
+}
+
+function addToCart() {
+    let product = document.getElementById('productSelect').selectedOptions[0].text;
+    let led = document.getElementById('ledSelect').value;
+    let name = document.getElementById('nameCarving').value || "None";
+    let total = document.getElementById('chargesDisplay').innerText.split("Rs ")[1];
+    alert(product + "\nLED: " + led + "\nName: " + name + "\nTotal: Rs " + total);
+}
+
+// Initialize charges
+updateCharges();
+</script>
+
+</body>
+</html>
