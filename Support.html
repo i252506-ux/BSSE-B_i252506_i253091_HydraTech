@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HydraTech Contact Page</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f0f4f8; /* Soft background */
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2A4DFF;
+    margin: 20px 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+
+  .form-section, .info-box {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .form-section label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .form-section input, .form-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #2A4DFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .submit-btn:hover {
+    background: #1a33cc;
+  }
+
+  .info-box h2 {
+    color: #2A4DFF;
+    margin-bottom: 10px;
+  }
+
+  .info-box p, .info-box h3 {
+    margin: 5px 0;
+  }
+
+  .footer {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #555;
+  }
+
+</style>
+</head>
+<body>
+
+<h1>HYDRATECH </h1>
+
+<div class="container">
+
+  <!-- Contact Form -->
+  <div class="form-section">
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Your Name">
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="you@example.com">
+
+    <label for="message">Message</label>
+    <textarea id="message" rows="4" placeholder="Write your message here..."></textarea>
+
+    <button class="submit-btn" onclick="submitForm()">Submit </button>
+  </div>
+
+  <!-- Contact Info -->
+  <div class="info-box">
+    <h2>Contact Info</h2>
+    <p>Email: support@hydratech.com</p>
+    <p>Phone: +123 456 789</p>
+    <p>Address: City, Country</p>
+
+    <h3>FAQs</h3>
+    <p><b>Q1:</b> How do I track my order?<br>→ Use the tracking number sent to your email.</p>
+    <p><b>Q2:</b> What is your return policy?<br>→ Items can be returned within 14 days.</p>
+    <p><b>Q3:</b> Do you ship internationally?<br>→ Yes, worldwide shipping available.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  © 2025 HydraTech. All Rights Reserved.<br>
+  <b>Made by Taha Yasin (1253091)</b>
+</div>
+
+<script>
+  function submitForm() {
+    alert("Thank you! Your message has been submitted.");
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+  }
+</script>
+
+</body>
+</html>
