@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HydraTech - Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #eef1ff;
+        }
+
+        /* Navbar */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2A4DFF;
+            padding: 10px 20px;
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .menu { display: flex; gap: 20px; }
+        .menu div { cursor: pointer; font-weight: bold; transition: transform 0.2s; }
+        .menu div:hover { transform: scale(1.1); }
+
+        .search-bar input { padding: 7px 10px; border-radius: 5px; border: none; width: 200px; }
+        .icons { display: flex; gap: 15px; }
+        .icons img { width: 25px; cursor: pointer; transition: transform 0.2s; }
+        .icons img:hover { transform: scale(1.2); }
+
+        /* Content Sections */
+        .content { display: none; background-color: #f7f9ff; padding: 15px 20px; border-bottom: 1px solid #ddd; }
+        .accordion-active { display: block; }
+
+        .bottle-row { display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
+        .bottle-card { text-align: center; background: white; padding: 10px; border-radius: 10px; box-shadow: 0 0 5px gray; width: 120px; cursor: pointer; }
+        .bottle-card img { width: 100%; border-radius: 10px; }
+
+        /* Product info popup style */
+        .product-info { display: none; background: white; padding: 15px; margin-top: 10px; border-radius: 10px; box-shadow: 0 0 5px gray; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="nav-bar">
+    <div class="menu">
+        <div data-content="home-content">Home</div>
+        <div data-content="products-content">Products</div>
+        <div data-content="about-content">About</div>
+        <div data-content="contact-content">Contact</div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search products...">
+    </div>
+
+    <div class="icons">
+        <img src="Wishing.png" title="Wishlist">
+        <img src="Cart.png" title="Cart">
+        <img src="User Icon.png" title="User">
+        <img src="Link.png" title="Copy Link">
+    </div>
+</div>
+
+<!-- Home Section -->
+<div id="home-content" class="content">
+    <p>Welcome to HydraTech - Tap a bottle to see more info!</p>
+
+    <div class="bottle-row">
+        <div class="bottle-card" onclick="showInfo('pro')">
+            <img src="Image 2 for Home.png" alt="HydraTech Pro">
+            <p>HydraTech Pro</p>
+        </div>
+        <div class="bottle-card" onclick="showInfo('mini')">
+            <img src="Mini Bottle.png" alt="HydraTech Mini">
+            <p>HydraTech Mini</p>
+        </div>
+        <div class="bottle-card" onclick="showInfo('aqua')">
+            <img src="Image 3 for Home.png" alt="HydraTech Aqua">
+            <p>HydraTech Aqua</p>
+        </div>
+        <div class="bottle-card" onclick="showInfo('frost')">
+            <img src="Back.png" alt="HydraTech Frost">
+            <p>HydraTech Frost</p>
+        </div>
+    </div>
+
+    <!-- Product Info -->
+    <div id="pro" class="product-info">
+        <h3>HydraTech Pro</h3>
+        <p>Advanced smart bottle with temperature control and hydration tracking. Perfect for tech-savvy users.</p>
+    </div>
+    <div id="mini" class="product-info">
+        <h3>HydraTech Mini</h3>
+        <p>Compact and lightweight, easy to carry anywhere. Keeps water cool and tracks your daily intake.</p>
+    </div>
+    <div id="aqua" class="product-info">
+        <h3>HydraTech Aqua</h3>
+        <p>Stylish design with large capacity. Ideal for workouts and long trips.</p>
+    </div>
+    <div id="frost" class="product-info">
+        <h3>HydraTech Frost</h3>
+        <p>Frosted bottle with double insulation. Keeps water cold for 24 hours and hot for 12 hours.</p>
+    </div>
+</div>
+
+<!-- Products Section -->
+<div id="products-content" class="content">
+    <p>Our Products:</p>
+    <div class="bottle-row">
+        <div class="bottle-card">
+            <p style="font-weight:bold; font-size:16px; text-transform:uppercase;">HYDRATECH PRO</p>
+        </div>
+        <div class="bottle-card">
+            <p style="font-weight:bold; font-size:16px; text-transform:uppercase;">HYDRATECH MINI</p>
+        </div>
+        <div class="bottle-card">
+            <p style="font-weight:bold; font-size:16px; text-transform:uppercase;">HYDRATECH AQUA</p>
+        </div>
+        <div class="bottle-card">
+            <p style="font-weight:bold; font-size:16px; text-transform:uppercase;">HYDRATECH FROST</p>
+        </div>
+    </div>
+</div>
+
+<!-- About Section -->
+<div id="about-content" class="content">
+    <p>We focus on customer satisfaction and constantly update our collection to match the latest trends.
+"Our team is passionate about technology and aims to make your online shopping experience seamless.".</p>
+</div>
+
+<!-- Contact Section -->
+<div id="contact-content" class="content">
+    <p>Email: support@hydratech.com<br>Phone: +92 123 456 789<br>Address: NU Campus, Pakistan</p>
+</div>
+
+<script>
+    // Accordion toggle
+    const menuItems = document.querySelectorAll('.menu div');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const contentId = item.getAttribute('data-content');
+            const content = document.getElementById(contentId);
+            document.querySelectorAll('.content').forEach(c => {
+                if(c !== content) c.classList.remove('accordion-active');
+            });
+            content.classList.toggle('accordion-active');
+        });
+    });
+
+    // Show product info on tap
+    function showInfo(id) {
+        document.querySelectorAll('.product-info').forEach(info => info.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
