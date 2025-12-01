@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HydraTech - Cart</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #eef1ff, #d0e1ff);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2A4DFF;
+            margin-bottom: 30px;
+        }
+
+        .cart-container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #2A4DFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f3f6ff;
+        }
+
+        .total {
+            font-weight: bold;
+            color: green;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            margin: 20px auto 0 auto;
+            font-size: 18px;
+            background: #2A4DFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            width: 280px;
+            transition: all 0.3s ease;
+        }
+
+        .btn img {
+            width: 28px;
+            margin-right: 12px;
+        }
+
+        .btn:hover {
+            background: #1a38c7;
+            transform: translateY(-2px);
+        }
+
+        /* Small note */
+        .note {
+            text-align: center;
+            font-size: 14px;
+            color: gray;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Your Cart</h2>
+
+<div class="cart-container">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Base Price</th>
+            <th>LED Charge</th>
+            <th>Name Carving</th>
+            <th>Tax (10%)</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td id="prodName">HydraTech Pro</td>
+            <td id="basePrice">Rs 0</td>
+            <td id="ledCharge">-</td>
+            <td id="nameCharge">-</td>
+            <td id="tax">Rs 0</td>
+            <td id="totalAmount">Rs 0</td>
+        </tr>
+    </table>
+
+    <button class="btn" onclick="proceedPayment()">
+        <img src="https://cdn-icons-png.flaticon.com/512/126/126510.png" alt="Cart Icon"> Proceed to Payment
+    </button>
+
+    <p class="note">Note: Charges only apply if you choose customization options.</p>
+</div>
+
+<script>
+    // Example: data from selected product & customization
+    let selectedProduct = {
+        name: "HydraTech Pro",
+        basePrice: 5999,
+        ledCharge: 0,       // 0 if not selected
+        nameCharge: 0       // 0 if not selected
+    };
+
+    // Simulate if user selected customization
+    // Uncomment to test customization
+    // selectedProduct.ledCharge = 300;
+    // selectedProduct.nameCharge = 500;
+
+    // Calculate tax & total
+    let subtotal = selectedProduct.basePrice + selectedProduct.ledCharge + selectedProduct.nameCharge;
+    let tax = subtotal * 0.10;
+    let total = subtotal + tax;
+
+    // Display data
+    document.getElementById('prodName').innerText = selectedProduct.name;
+    document.getElementById('basePrice').innerText = "Rs " + selectedProduct.basePrice;
+
+    document.getElementById('ledCharge').innerText = selectedProduct.ledCharge > 0 ? "Rs " + selectedProduct.ledCharge : "-";
+    document.getElementById('nameCharge').innerText = selectedProduct.nameCharge > 0 ? "Rs " + selectedProduct.nameCharge : "-";
+
+    document.getElementById('tax').innerText = "Rs " + tax.toFixed(2);
+    document.getElementById('totalAmount').innerText = "Rs " + total.toFixed(2);
+
+    function proceedPayment() {
+        alert("Your total bill is Rs " + total.toFixed(2) + "\nProceeding to payment page...");
+        // Redirect to payment page if exists
+        // window.location.href = "payment.html";
+    }
+</script>
+
+</body>
+</html>
